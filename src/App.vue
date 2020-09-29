@@ -1,5 +1,5 @@
 <template>
-    <bracket :rounds="rounds">
+    <bracket :rounds="rounds" :customizable="true">
         <template #player="{ player }">
             <span v-if="player.id === player.original_id"> {{ player.name }} </span>
             <span v-else> {{ player.name }}* </span>

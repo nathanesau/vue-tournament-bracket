@@ -3636,7 +3636,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"ff933ce6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/Bracket.vue?vue&type=template&id=66d949aa&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"ff933ce6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/Bracket.vue?vue&type=template&id=50cd4b44&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.recursiveBracket)?_c('div',{staticClass:"vtb-wrapper"},[_c('bracket-node',{attrs:{"bracket-node":_vm.recursiveBracket,"highlighted-player-id":_vm.highlightedPlayerId},on:{"onSelectedPlayer":_vm.highlightPlayer,"onDeselectedPlayer":_vm.unhighlightPlayer,"onClickPlayer":_vm.clickPlayer},scopedSlots:_vm._u([{key:"player",fn:function(ref){
 var player = ref.player;
 return [_vm._t("player",null,{"player":player})]}},{key:"player-extension-bottom",fn:function(ref){
@@ -3645,7 +3645,7 @@ return [_vm._t("player-extension-bottom",null,{"match":match})]}}],null,true)})]
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/Bracket.vue?vue&type=template&id=66d949aa&
+// CONCATENATED MODULE: ./src/Bracket.vue?vue&type=template&id=50cd4b44&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__("b0c0");
@@ -4142,7 +4142,7 @@ var recursiveBracket_default = /*#__PURE__*/__webpack_require__.n(components_rec
   components: {
     "bracket-node": BracketNode
   },
-  props: ["rounds", "flatTree"],
+  props: ["rounds", "flatTree", "customizable"],
   data: function data() {
     return {
       highlightedPlayerId: null
@@ -4165,6 +4165,10 @@ var recursiveBracket_default = /*#__PURE__*/__webpack_require__.n(components_rec
       this.highlightedPlayerId = null;
     },
     clickPlayer: function clickPlayer(player, opponent, round_num) {
+      if (!this.customizable) {
+        return;
+      }
+
       if (opponent.winner) {
         opponent.winner = false;
         player.winner = true;

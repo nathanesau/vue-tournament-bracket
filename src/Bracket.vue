@@ -26,7 +26,7 @@
         components: {
             "bracket-node": BracketNode,
         },
-        props: ["rounds", "flatTree"],
+        props: ["rounds", "flatTree", "customizable"],
         data() {
             return {
                 highlightedPlayerId: null,
@@ -48,7 +48,11 @@
             unhighlightPlayer() {
                 this.highlightedPlayerId = null;
             },
-            clickPlayer(player, opponent, round_num) {    
+            clickPlayer(player, opponent, round_num) {
+                if (!this.customizable) {
+                    return;
+                }
+                
                 if (opponent.winner) {
                     opponent.winner = false;
                     player.winner = true;
