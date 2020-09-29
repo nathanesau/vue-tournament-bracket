@@ -3,16 +3,18 @@
         <div>
             <div
                 :class="['vtb-player', 'vtb-player1', getPlayerClass(bracketNode.player1)]"
-                @mouseover="highlightPlayer(bracketNode.player1.id)"
+                @mouseover="highlightPlayer(bracketNode.player1)"
                 @mouseleave="unhighlightPlayer"
+                @mousedown="clickPlayer(bracketNode.player1, bracketNode.player2, bracketNode.round_num)"
             >
                 <slot :player="bracketNode.player1" name="player" />
             </div>
 
             <div
                 :class="['vtb-player', 'vtb-player2', getPlayerClass(bracketNode.player2)]"
-                @mouseover="highlightPlayer(bracketNode.player2.id)"
+                @mouseover="highlightPlayer(bracketNode.player2)"
                 @mouseleave="unhighlightPlayer"
+                @mousedown="clickPlayer(bracketNode.player2, bracketNode.player1, bracketNode.round_num)"
             >
                 <slot :player="bracketNode.player2" name="player" />
             </div>
@@ -44,11 +46,14 @@
 
                 return clazz;
             },
-            highlightPlayer(playerId) {
-                this.$emit("onSelectedPlayer", playerId);
+            highlightPlayer(player) {
+                this.$emit("onSelectedPlayer", player);
             },
             unhighlightPlayer() {
                 this.$emit("onDeselectedPlayer");
+            },
+            clickPlayer(player, opponent, round_num) {
+                this.$emit("onClickPlayer", player, opponent, round_num);
             }
         }
     };

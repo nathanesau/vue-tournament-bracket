@@ -6,6 +6,7 @@
                 :highlighted-player-id="highlightedPlayerId"
                 @onSelectedPlayer="highlightPlayer"
                 @onDeselectedPlayer="unhighlightPlayer"
+                @onClickPlayer="clickPlayer"
             >
                 <template #player="{ player }">
                     <slot name="player" :player="player" />
@@ -23,6 +24,7 @@
                     :highlighted-player-id="highlightedPlayerId"
                     @onSelectedPlayer="highlightPlayer"
                     @onDeselectedPlayer="unhighlightPlayer"
+                    @onClickPlayer="clickPlayer"
                 >
                     <template #player="{ player }">
                         <slot name="player" :player="player" />
@@ -38,6 +40,7 @@
                     :highlighted-player-id="highlightedPlayerId"
                     @onSelectedPlayer="highlightPlayer"
                     @onDeselectedPlayer="unhighlightPlayer"
+                    @onClickPlayer="clickPlayer"
                 >
                     <template #player="{ player }">
                         <slot name="player" :player="player" />
@@ -88,12 +91,15 @@
 
                 return clazz;
             },
-            highlightPlayer(playerId) {
-                this.$emit("onSelectedPlayer", playerId);
+            highlightPlayer(player) {
+                this.$emit("onSelectedPlayer", player);
             },
             unhighlightPlayer() {
                 this.$emit("onDeselectedPlayer");
             },
+            clickPlayer(player, opponent, round_num) {
+                this.$emit("onClickPlayer", player, opponent, round_num);
+            }
         },
     };
 </script>
